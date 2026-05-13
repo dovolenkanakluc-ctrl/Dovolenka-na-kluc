@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dovolenka na kľúč</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --cream:#f8f4ee;
+    --beige:#efe4d4;
+    --olive:#b7c1a8;
+    --blue:#c8dce7;
+    --brown:#4a3c32;
+    --gold:#c9b08a;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--brown);
+    line-height:1.7;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(248,244,238,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid rgba(0,0,0,0.05);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+}
+
+.logo{
+    font-family:'Playfair Display',serif;
+    font-size:1.6rem;
+    font-weight:700;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--brown);
+    font-weight:500;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 28px;
+    border-radius:40px;
+    text-decoration:none;
+    transition:0.3s ease;
+    font-weight:600;
+    cursor:pointer;
+    border:none;
+}
+
+.btn-primary{
+    background:var(--brown);
+    color:white;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+}
+
+.btn-secondary{
+    border:1px solid var(--brown);
+    color:var(--brown);
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:
+    linear-gradient(rgba(248,244,238,0.45),rgba(248,244,238,0.7)),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.hero-content{
+    max-width:720px;
+    padding-top:80px;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(3rem,6vw,5.5rem);
+    line-height:1.1;
+    margin-bottom:24px;
+}
+
+.hero p{
+    font-size:1.15rem;
+    margin-bottom:34px;
+    max-width:620px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.section{
+    padding:110px 0;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.section img{
+    width:100%;
+    border-radius:26px;
+    object-fit:cover;
+    box-shadow:0 20px 60px rgba(0,0,0,0.08);
+}
+
+h2{
+    font-family:'Playfair Display',serif;
+    font-size:2.8rem;
+    margin-bottom:24px;
+}
+
+.services{
+    background:var(--beige);
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:24px;
+    margin-top:50px;
+}
+
+.card{
+    background:white;
+    padding:34px;
+    border-radius:24px;
+    transition:0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.pricing{
+    background:linear-gradient(to bottom,var(--cream),var(--blue));
+}
+
+.pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+    margin-top:50px;
+}
+
+.price-card{
+    background:white;
+    padding:42px 34px;
+    border-radius:28px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.05);
+    position:relative;
+    transition:0.3s ease;
+}
+
+.price-card:hover{
+    transform:translateY(-8px);
+}
+
+.price-tag{
+    font-size:3rem;
+    font-weight:700;
+    margin:20px 0;
+}
+
+.price-card ul{
+    list-style:none;
+    margin:24px 0 34px;
+}
+
+.price-card li{
+    margin-bottom:14px;
+}
+
+.badge{
+    position:absolute;
+    top:18px;
+    right:18px;
+    background:var(--olive);
+    color:white;
+    padding:8px 16px;
+    border-radius:40px;
+    font-size:0.8rem;
+}
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:24px;
+    margin-top:50px;
+}
+
+.step{
+    background:white;
+    padding:34px;
+    border-radius:24px;
+    text-align:center;
+}
+
+.step-number{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:var(--olive);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 18px;
+    font-weight:700;
+    color:white;
+}
+
+.instagram{
+    background:linear-gradient(to right,var(--blue),var(--cream));
+    border-radius:32px;
+    padding:70px;
+    text-align:center;
+}
+
+.contact{
+    background:white;
+    border-radius:32px;
+    padding:60px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.05);
+}
+
+form{
+    display:grid;
+    gap:18px;
+    margin-top:28px;
+}
+
+input, textarea, select{
+    padding:16px;
+    border-radius:14px;
+    border:1px solid #ddd;
+    font-family:'Inter',sans-serif;
+    font-size:1rem;
+}
+
+textarea{
+    min-height:140px;
+}
+
+footer{
+    padding:40px 0;
+    text-align:center;
+    color:#7d6e61;
+}
+
+.small{
+    margin-top:16px;
+    opacity:0.8;
+}
+
+@media(max-width:900px){
+    .grid-2{
+        grid-template-columns:1fr;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .instagram{
+        padding:40px 24px;
+    }
+
+    .contact{
+        padding:32px 24px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Dovolenka na kľúč</div>
+
+            <div class="nav-links">
+                <a href="#services">Služby</a>
+                <a href="#pricing">Balíčky</a>
+                <a href="#how">Ako funguje</a>
+                <a href="#contact">Kontakt</a>
+
+                <a href="https://www.instagram.com/dovolenka_na_kluc/" target="_blank" class="btn btn-primary">
+                    Instagram
+                </a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+
+            <h1>Dovolenka bez stresu.</h1>
+
+            <p>
+                Vyhľadám vám ideálne letenky a ubytovanie na mieru podľa vašich predstáv, termínu a rozpočtu.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary">Vybrať balík</a>
+                <a href="https://www.instagram.com/dovolenka_na_kluc/" target="_blank" class="btn btn-secondary">
+                    Instagram
+                </a>
+            </div>
+
+            <div class="small">
+                Individuálne vyhľadávanie • Exotika • Rodinné pobyty • City breaky
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container grid-2">
+
+        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop" alt="luxury room">
+
+        <div>
+            <h2>Cestovanie jednoducho a elegantne</h2>
+
+            <p>
+                Stačí mi povedať váš termín, rozpočet a predstavy. Ja pre vás nájdem ideálne letenky, kvalitné ubytovanie a možnosti, ktoré vám ušetria čas aj stres.
+            </p>
+
+            <br>
+
+            <p>
+                Každá dovolenka je vyberaná individuálne — bez univerzálnych ponúk a bez chaosu.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="section services" id="services">
+    <div class="container">
+
+        <h2>Čo pre vás zabezpečím</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>✈️ Letenky na mieru</h3>
+                <p>Najvýhodnejšie a praktické spojenia podľa vašich preferencií.</p>
+            </div>
+
+            <div class="card">
+                <h3>🏨 Ubytovanie</h3>
+                <p>Overené hotely, apartmány aj luxury rezorty.</p>
+            </div>
+
+            <div class="card">
+                <h3>🌴 Exotické destinácie</h3>
+                <p>Maldivy, Zanzibar, Dubaj, Bali, Grécko a ďalšie.</p>
+            </div>
+
+            <div class="card">
+                <h3>👨‍👩‍👧 Rodinné dovolenky</h3>
+                <p>Pohodlné a praktické riešenia pre rodiny s deťmi.</p>
+            </div>
+
+            <div class="card">
+                <h3>💎 Luxury pobyty</h3>
+                <p>Prémiové hotely, infinity pools a adults only rezorty.</p>
+            </div>
+
+            <div class="card">
+                <h3>🗺️ City breaky</h3>
+                <p>Elegantné krátke pobyty po Európe aj mimo nej.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section pricing" id="pricing">
+    <div class="container">
+
+        <h2>Vyberte si balík</h2>
+
+        <div class="pricing-grid">
+
+            <div class="price-card">
+                <h3>Basic</h3>
+                <div class="price-tag">15€</div>
+
+                <ul>
+                    <li>✔ 1 destinácia</li>
+                    <li>✔ 3 varianty ubytovania</li>
+                    <li>✔ Individuálne odporúčania</li>
+                    <li>✔ Ideálne pre jednoduché dovolenky</li>
+                </ul>
+
+                <button class="btn btn-primary" onclick="selectPackage('Basic - 15€')">
+                    Vybrať balík
+                </button>
+            </div>
+
+            <div class="price-card">
+                <div class="badge">Najobľúbenejší</div>
+                <h3>Standard</h3>
+                <div class="price-tag">25€</div>
+
+                <ul>
+                    <li>✔ 3 rôzne destinácie</li>
+                    <li>✔ 3 varianty ubytovania v každej</li>
+                    <li>✔ Viac možností výberu</li>
+                    <li>✔ Individuálny výber na mieru</li>
+                </ul>
+
+                <button class="btn btn-primary" onclick="selectPackage('Standard - 25€')">
+                    Vybrať balík
+                </button>
+            </div>
+
+            <div class="price-card">
+                <h3>Plus</h3>
+                <div class="price-tag">45€</div>
+
+                <ul>
+                    <li>✔ Ubytovanie</li>
+                    <li>✔ Letenky</li>
+                    <li>✔ Itinerár na mieru</li>
+                    <li>✔ Luxury & concierge prístup</li>
+                    <li>�� Kompletné plánovanie dovolenky</li>
+                </ul>
+
+                <button class="btn btn-primary" onclick="selectPackage('Plus - 45€')">
+                    Vybrať balík
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section" id="how">
+    <div class="container">
+
+        <h2>Ako to funguje</h2>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Napíšete mi</h3>
+                <p>Pošlete mi správu s vašim termínom, rozpočtom a predstavami o dovolenke.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Vyhľadám varianty</h3>
+                <p>Nájdem pre vás najlepšie letenky, hotely a destinácie podľa vašich kritérií.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Doporučím riešenia</h3>
+                <p>Predstavím vám overené možnosti s podrobným popisom a cenami.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Objednate a cestujete</h3>
+                <p>Vyberiete si a už sa tešíte na vašu dovolenku bez stresu.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section instagram" id="instagram">
+    <div class="container">
+        <h2 style="text-align:center; color:white; margin-bottom:24px;">Sledujte nás na Instagrame</h2>
+        <p style="text-align:center; color:white; font-size:1.1rem; margin-bottom:34px;">
+            Inšpirácie na dovolenky, tipy na cestovanie a exkluzívne ponuky nájdete na našom Instagram profile.
+        </p>
+        <div style="text-align:center;">
+            <a href="https://www.instagram.com/dovolenka_na_kluc/" target="_blank" class="btn btn-primary">
+                Ísť na Instagram
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="contact">
+    <div class="container">
+        <h2 style="text-align:center; margin-bottom:50px;">Kontakt</h2>
+        
+        <div class="contact">
+            <h3 style="margin-bottom:16px;">Napíšte mi správu</h3>
+            <p style="margin-bottom:24px;">
+                Chcete si dovolenku na mieru? Napíšte mi a dohodnem vás čo najskôr.
+            </p>
+            
+            <form>
+                <input type="text" placeholder="Vaše meno" required>
+                <input type="email" placeholder="Váš email" required>
+                <input type="tel" placeholder="Váš telefón (voliteľné)">
+                <select required>
+                    <option value="">-- Vyberte balík --</option>
+                    <option value="basic">Basic - 15€</option>
+                    <option value="standard">Standard - 25€</option>
+                    <option value="plus">Plus - 45€</option>
+                </select>
+                <textarea placeholder="Povedzte mi o vašich predstavách na dovolenku..." required></textarea>
+                <button type="submit" class="btn btn-primary" style="width:100%; text-align:center;">
+                    Poslať správu
+                </button>
+            </form>
+        </div>
+
+        <div style="text-align:center; margin-top:50px;">
+            <h3>Kontaktujte ma aj tu:</h3>
+            <p style="margin-top:16px;">
+                📧 Email: <a href="mailto:info@dovolenkanaklic.sk" style="color:var(--brown); text-decoration:none;">info@dovolenkanaklic.sk</a>
+            </p>
+            <p>
+                📱 Instagram: <a href="https://www.instagram.com/dovolenka_na_kluc/" target="_blank" style="color:var(--brown); text-decoration:none;">@dovolenka_na_kluc</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Dovolenka na kľúč. Všetky práva vyhradené.</p>
+        <p class="small">Individuálne plánovanie dovolek | Najlepšie destinácie | Bez stresu</p>
+    </div>
+</footer>
+
+<script>
+function selectPackage(packageName) {
+    const email = prompt(`Ďakujem za váš záujem! Vybrali ste si: ${packageName}\n\nNapíšte vašu emailovú adresu:`);
+    
+    if (email) {
+        alert(`Ďakujem! Skoro sa ozveme na: ${email}`);
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+</script>
+
+</body>
+</html>
